@@ -9,7 +9,7 @@ namespace RabbitAPI.Model
     {
         public enum FurColors
         {
-            White,
+            White = 1 ,
             Brown,
             Black,
             Grey
