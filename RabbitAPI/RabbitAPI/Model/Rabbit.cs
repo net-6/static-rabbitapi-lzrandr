@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RabbitAPI.Model
 {
-    class Rabbit
+    public class Rabbit
     {
         public enum FurColors
         {
@@ -33,6 +33,11 @@ namespace RabbitAPI.Model
         {
             dateOfBirth = DateTime.Now;
         }
+
+        public Rabbit()
+        {
+        }
+
         public void Move()
         {
             Console.WriteLine("The rabbit is moving left and right like crazy.");
