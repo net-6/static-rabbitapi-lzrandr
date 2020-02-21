@@ -1,25 +1,43 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using RabbitAPI.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RabbitAPI.Model;
 
 namespace RabbitAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class RabbitController : ControllerBase
     {
+        
+
         // GET: api/Rabbit
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Rabbit> Get()
         {
             Rabbit r1 = new Rabbit()
             {
+                FurColors = FurColors.White,
+                EyeColors = EyeColors.Blue,
+                Gender = Gender.Female, 
+                DateOfBirth = new System.DateTime(2019, 06, 11)
+                
+            };
+
+            Rabbit r2 = new Rabbit()
+            {
+                FurColors = FurColors.Grey,
+                EyeColors = EyeColors.Red,
+                Gender = Gender.Male,
+                DateOfBirth = new System.DateTime(2001, 4, 11)
 
             };
+           List<Rabbit> myRabbits = new List<Rabbit>();
+            myRabbits.Add(r1);
+            myRabbits.Add(r2);
+            return myRabbits;
+
+
+   
         }
 
         // GET: api/Rabbit/5
@@ -31,8 +49,16 @@ namespace RabbitAPI.Controllers
 
         // POST: api/Rabbit
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] string value)
         {
+            if (ModelState.IsValid)
+            {
+                //save in database
+                
+                return Ok();
+            }
+            return BadRequest();
+
         }
 
         // PUT: api/Rabbit/5

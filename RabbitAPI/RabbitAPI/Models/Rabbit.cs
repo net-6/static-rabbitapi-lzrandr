@@ -3,35 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RabbitAPI.Model
+namespace RabbitAPI.Models
 {
-    public class Rabbit
-    {
-        public enum FurColors
+    public enum FurColors
         {
             White = 1 ,
-            Brown,
-            Black,
-            Grey
+            Brown = 2,
+            Black = 3,
+            Grey = 4
         }
         public enum EyeColors
         {
-            Blue,
-            Black,
-            Red
+            Blue = 1,
+            Black = 2,
+            Red = 3
         }
         public enum Gender
         {
-            Male,
-            Female
+            Male =  1,
+            Female = 2
         }
-        private FurColors furColor;
-        private EyeColors eyeColor;
-        private Gender gender;
-        private readonly DateTime dateOfBirth;
-        public Rabbit(FurColors furColors, EyeColors eyeColor, Gender gender)
+    public class Rabbit
+    {
+        
+        public FurColors FurColors { get; set; }
+
+        public EyeColors EyeColors { get; set; }
+
+        public Gender Gender { get; set; }
+
+        public  DateTime DateOfBirth { get; set; }
+
+        public int Age
         {
-            dateOfBirth = DateTime.Now;
+            get { return (DateTime.Now - DateOfBirth).Days / 365; }
         }
 
         public Rabbit()
@@ -50,9 +55,6 @@ namespace RabbitAPI.Model
         {
             Console.WriteLine("The rabbit is eating some food");
         }
-        public int Age
-        {
-            get { return (DateTime.Now - dateOfBirth).Days / 365; }
-        }
+        
     }
 }
